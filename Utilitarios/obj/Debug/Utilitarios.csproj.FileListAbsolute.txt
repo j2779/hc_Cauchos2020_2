@@ -1,0 +1,6 @@
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\bin\Debug\Utilitarios.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\bin\Debug\Utilitarios.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\obj\Debug\Utilitarios.csprojAssemblyReference.cache
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\obj\Debug\Utilitarios.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\Utilitarios\obj\Debug\Utilitarios.pdb
