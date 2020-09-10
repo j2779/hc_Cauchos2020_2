@@ -27,6 +27,5 @@ public partial class View_Login : System.Web.UI.Page
         if (val == 2)
             LB_mensaje.Text = "usuario incorrecto";*/
 
-
     }
 }

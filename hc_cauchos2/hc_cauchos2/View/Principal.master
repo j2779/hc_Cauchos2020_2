@@ -32,7 +32,7 @@
 <body>
     <form id="form1" runat="server">
     <!------------------------------------------------------------------------------------------------------------------->    
-        <!-- Navigation-->
+        <!-- NavigationADASD-->
           <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
               <h2 id="titulo" class="navbar-header text-white" href="home.aspx">
@@ -55,7 +55,7 @@
                     <a class="nav-link" href="login.aspx">Ingresar</a>
                   </li>
                      <li class="nav-item">
-                    <a class="nav-link" href="registro.aspx">Registrate</a>
+                    <a class="nav-link" href="Registro.aspx">Registrate</a>
                   </li>         
                 </ul>
               </div>
