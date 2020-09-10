@@ -9,3 +9,16 @@ K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\LogicaNegocio\obj\Debug\Logi
 K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.CopyComplete
 K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\LogicaNegocio\obj\Debug\LogicaNegocio.dll
 K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS2\LogicaNegocio\obj\Debug\LogicaNegocio.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\obj\Debug\LogicaNegocio.csprojAssemblyReference.cache
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.CoreCompileInputs.cache
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\obj\Debug\LogicaNegocio.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\obj\Debug\LogicaNegocio.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\LogicaNegocio.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\LogicaNegocio.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Datos.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Utilitarios.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\EntityFramework.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Datos.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Utilitarios.pdb
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\EntityFramework.xml
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\obj\Debug\LogicaNegocio.csproj.CopyComplete
