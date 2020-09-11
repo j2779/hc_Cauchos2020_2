@@ -34,6 +34,16 @@ namespace Datos
                 return db.usuario.Where(x => x.Correo.Equals(verificar.Correo) || x.Identificacion.Equals(verificar.Identificacion)).FirstOrDefault();
             }
         }
+
+        //METODO PARA INSERTAR USUARIO AL MOMENTO DEL LOGIN
+        public void InsertarUsuario(UEncapUsuario user)
+        {
+            using (var db = new Mapeo())
+            {
+                db.usuario.Add(user);
+                db.SaveChanges();
+            }
+        }
     }
 
 }

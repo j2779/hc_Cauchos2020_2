@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Utilitarios;
 using LogicaNegocio;
+using Datos;
 
 
 public partial class View_Registro : System.Web.UI.Page
@@ -30,8 +31,46 @@ public partial class View_Registro : System.Web.UI.Page
         bool veriCorreo = new LLogin().verificarCorreo(verificarCorreo);
         bool veriIdentificacion = new LLogin().verificarIdentificacion(verificarIdentificacion);
 
-        if (verificarCorreo == null && verificarIdentificacion == null)
+        if (veriCorreo == true && veriIdentificacion == true)
         {
+            //traigo valores de los texbox
+            UEncapUsuario User = new UEncapUsuario();
+            User.Nombre = TB_nombres.Text;
+            User.Apellido = TB_apellidos.Text;
+            User.Correo = TB_correo.Text;
+            User.Clave = TB_contraseña.Text;
+            User.Fecha_nacimiento = DateTime.Parse(TB_fecha_nacimiento.Text);
+            int actual = DateTime.Now.Year;
+            if ((actual - (int)User.Fecha_nacimiento.Year) < 18)
+            {
+                //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert ( 'Debe ser mayor de edad para poderse registrar' );</script>");
+                //return;
+                MostrarMensaje1($"Para registrarse debe ser mayor de edad");
+                return;
+            }
+            if ((actual - (int)User.Fecha_nacimiento.Year) > 80)
+            {
+                //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert ( 'No aceptamos edades mayores a 80' );</script>");
+                //return;
+                MostrarMensaje1($"No aceptamos personas mayores de 80 años");
+                return;
+            }
+
+            User.Identificacion = TB_identificacion.Text;
+            User.Rol_id = 4;
+            User.Estado_id = 1;
+            //apunto a metodo de insert 
+            new DaoUsuario().InsertarUsuario(User);
+            //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert ( 'El usuario se ha registrado satisfactoriamente' );</script>");
+            MostrarMensaje2($"El usuario se ha registrado satisfactoriamente");
+            TB_nombres.Text = "";
+            TB_apellidos.Text = "";
+            TB_correo.Text = "";
+            TB_contraseña.Text = "";
+            TB_confirmar_contra.Text = "";
+            TB_identificacion.Text = "";
+            TB_fecha_nacimiento.Text = "";
+            return;
 
         }
 
