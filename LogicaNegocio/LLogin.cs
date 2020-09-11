@@ -6,21 +6,36 @@ namespace LogicaNegocio
 {
     public class LLogin
     {
-
-        public int login (UEncapUsuario usuario)
+        // logica de negocio login
+        public bool login (UEncapUsuario usuario)
         {
-            int mensaje;
+            bool mensaje;
             usuario = new DaoUsuario().verificarUsuario(usuario);
 
             if (usuario != null)
-                mensaje = 1;
+                mensaje = false;
             else
 
-                mensaje = 2;
+                mensaje = true;
 
             return mensaje;
         }    
-        
+        // actualizacion de usuario
+        public string Actualizar (UEncapUsuario userb)
+        {
+            string aviso;
+            userb = new DaoUsuario().actualizarsession(userb);
+
+            if (userb != null)
+            {
+                aviso = ("$Se han cerrado las sessiones antiguas");
+            }
+            else {
+
+                aviso = ("$NO Se han cerrado las sessiones antiguas");
+            }
+
+        }
         public bool verificarCorreo(UEncapUsuario usuario)
         {
 

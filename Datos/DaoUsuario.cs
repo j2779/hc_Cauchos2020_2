@@ -9,12 +9,30 @@ namespace Datos
 {
     public class DaoUsuario
     {
-        //metodo para verificar que el usuario sea valido
+        //metodo para verificar que el usuario sea valido para login
         public UEncapUsuario verificarUsuario(UEncapUsuario verificar)
         {
             using (var db = new Mapeo())
             {
                 return db.usuario.Where(x => x.Correo.Equals(verificar.Correo) && x.Correo.Equals(verificar.Clave)).FirstOrDefault();
+            }
+        }
+        //metodo de actualizacion de session
+
+        public UEncapUsuario actualizarsession(UEncapUsuario actualizar)
+        {
+            using (var db = new Mapeo())
+            {
+                var resultado = db.usuario.FirstOrDefault(x => x.Correo == actualizar.Correo);
+                if (resultado != null)
+                {
+                    resultado.Ip_ = null;
+                    resultado.Mac_ = null;
+                    resultado.Sesion = null;
+
+                    db.SaveChanges();
+                    return resultado;
+                }
             }
         }
 
