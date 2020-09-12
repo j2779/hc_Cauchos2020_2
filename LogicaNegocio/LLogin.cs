@@ -34,7 +34,7 @@ namespace LogicaNegocio
 
                 aviso = ("$NO Se han cerrado las sessiones antiguas");
             }
-
+            
         }
         public bool verificarCorreo(UEncapUsuario usuario)
         {
@@ -65,6 +65,12 @@ namespace LogicaNegocio
                 respuesta = true;
             }
             return respuesta;
+        }
+
+
+        public void insertarUsuario(UEncapUsuario usuario)
+        {
+             new DaoUsuario().InsertarUsuario(usuario);
         }
     }
 }

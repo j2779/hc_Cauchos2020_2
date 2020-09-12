@@ -60,7 +60,7 @@ public partial class View_Registro : System.Web.UI.Page
             User.Rol_id = 4;
             User.Estado_id = 1;
             //apunto a metodo de insert 
-            new DaoUsuario().InsertarUsuario(User);
+            new LLogin().insertarUsuario(User);
             //cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert ( 'El usuario se ha registrado satisfactoriamente' );</script>");
             MostrarMensaje2($"El usuario se ha registrado satisfactoriamente");
             TB_nombres.Text = "";
