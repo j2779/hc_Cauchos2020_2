@@ -22,21 +22,26 @@ public partial class View_Login : System.Web.UI.Page
         ClientScriptManager cm = this.ClientScript;
         UEncapUsuario usuario = new UEncapUsuario();
         usuario.Correo = TB_correo.Text;
-        usuario.Correo = TB_contraseña.Text;
-        bool user = new LLogin().login(usuario);
+        usuario.Clave = TB_contraseña.Text;
+        usuario = new LLogin().login(usuario);
 
-        if (user == false) {
+        
+        if (usuario == null) {
 
             MostrarMensaje(" Correo o contraseña equivocados");
             return;
         }
         else
         {
-            //preguntar lo de sesiones
+            Session["Correo"] = usuario.Correo;
         }
         
         if (usuario.Estado_id == 1 || usuario.Estado_id == 4)
         {
+            Session["Nombre"] = usuario.Nombre + " " + usuario.Apellido;
+            Session["Valido"] = usuario;
+            usuario.Sesion = (string)Session["Nombre"].ToString();
+            new LLogin().actualizarUsuario(usuario);
 
             switch (usuario.Rol_id)
             {
@@ -46,10 +51,10 @@ public partial class View_Login : System.Web.UI.Page
                 case 2:
                     Response.Redirect("empleado/index_empleado.aspx");
                     break;
-                case 3;
+                case 3:
                     Response.Redirect("domiciliario/index_domiciliario.aspx");
                     break;
-                case 4;
+                case 4:
                     Response.Redirect("usuario/index_usuario.aspx");
                     break;
             }

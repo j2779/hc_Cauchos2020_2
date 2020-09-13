@@ -7,16 +7,10 @@ namespace LogicaNegocio
     public class LLogin
     {
         // logica de negocio login
-        public bool login (UEncapUsuario usuario)
+        public UEncapUsuario login (UEncapUsuario usuario)
         {
-            bool mensaje;
-            usuario = new DaoUsuario().verificarUsuario(usuario);
-
-            if (usuario != null)
-                mensaje = false;
-            else
-
-                mensaje = true;
+            UEncapUsuario mensaje = new UEncapUsuario();
+            mensaje = new DaoUsuario().verificarUsuario(usuario);
 
             return mensaje;
         }    
@@ -34,7 +28,7 @@ namespace LogicaNegocio
 
                 aviso = ("$NO Se han cerrado las sessiones antiguas");
             }
-            
+            return aviso;
         }
         public bool verificarCorreo(UEncapUsuario usuario)
         {
@@ -71,6 +65,17 @@ namespace LogicaNegocio
         public void insertarUsuario(UEncapUsuario usuario)
         {
              new DaoUsuario().InsertarUsuario(usuario);
+        }
+
+        public void actualizarUsuario(UEncapUsuario usuario)
+        {
+            new DaoUsuario().ActualizarUsuario(usuario);
+        }
+
+       public UEncapUsuario usuarioActivo2(string correo)
+        {
+           var usuario = new DaoUsuario().UsuarioActivo2(correo);
+           return usuario;
         }
     }
 }

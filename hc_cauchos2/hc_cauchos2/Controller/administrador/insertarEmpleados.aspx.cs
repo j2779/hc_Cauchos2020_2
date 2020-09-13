@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using LogicaNegocio;
 using Utilitarios;
 
-public partial class View_administrador_index_admin : System.Web.UI.Page
+public partial class View_administrador_insertarEmpleados : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

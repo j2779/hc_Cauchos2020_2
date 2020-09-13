@@ -14,7 +14,7 @@ namespace Datos
         {
             using (var db = new Mapeo())
             {
-                return db.usuario.Where(x => x.Correo.Equals(verificar.Correo) && x.Correo.Equals(verificar.Clave)).FirstOrDefault();
+                return db.usuario.Where(x => x.Correo.Equals(verificar.Correo) && x.Clave.Equals(verificar.Clave)).FirstOrDefault();
             }
         }
         //metodo de actualizacion de session
@@ -29,11 +29,12 @@ namespace Datos
                     resultado.Ip_ = null;
                     resultado.Mac_ = null;
                     resultado.Sesion = null;
-
                     db.SaveChanges();
-                    return resultado;
+                    
                 }
+                return resultado;
             }
+           
         }
 
         //METODO PARA VERIFICAR SI EXISTE REGISTRADO EL CORREO
@@ -60,6 +61,47 @@ namespace Datos
             {
                 db.usuario.Add(user);
                 db.SaveChanges();
+            }
+        }
+
+
+        //METODO PARA ACTUALIZAR USUARIOS 
+        public void ActualizarUsuario(UEncapUsuario user)
+        {
+            using (var db = new Mapeo())
+            {
+
+                var resultado = db.usuario.SingleOrDefault(b => b.User_id == user.User_id);
+                if (resultado != null)
+                {
+                    resultado.Nombre = user.Nombre;
+                    resultado.Apellido = user.Apellido;
+                    resultado.Correo = user.Correo;
+                    resultado.Clave = user.Clave;
+                    resultado.Fecha_nacimiento = user.Fecha_nacimiento;
+                    resultado.Identificacion = user.Identificacion;
+                    resultado.Token = user.Token;
+                    resultado.Estado_id = user.Estado_id;
+                    resultado.Rol_id = user.Rol_id;
+                    resultado.Tiempo_token = user.Tiempo_token;
+                    resultado.Sesion = user.Sesion;
+                    resultado.Last_modify = DateTime.Now;
+                    resultado.Ip_ = user.Ip_;
+                    resultado.Mac_ = user.Mac_;
+
+                    db.SaveChanges();
+                }
+
+            }
+
+        }
+
+        //METODO CONSULTAR USUARIO ACTIVO
+        public UEncapUsuario UsuarioActivo2(string correo)
+        {
+            using (var db = new Mapeo())
+            {
+                return db.usuario.Where(x => x.Correo == correo).FirstOrDefault();
             }
         }
     }
