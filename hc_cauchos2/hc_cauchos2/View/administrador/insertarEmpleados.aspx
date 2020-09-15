@@ -45,7 +45,7 @@
                                 <asp:ListItem Value="3">domiciliario</asp:ListItem>
                             </asp:DropDownList>
                             <br />                      
-                            <asp:Button ID="BTN_registrar_empleado" runat="server" Text="Registrar" class="btn btn-primary center-block" ValidationGroup="Registro" />
+                            <asp:Button ID="BTN_registrar_empleado" runat="server" Text="Registrar" class="btn btn-primary center-block" ValidationGroup="Registro" OnClick="BTN_registrar_empleado_Click" />
                 </div>                        
              </div>                                   
        </div>       

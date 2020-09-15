@@ -77,6 +77,11 @@ namespace LogicaNegocio
            var usuario = new DaoUsuario().UsuarioActivo2(correo);
            return usuario;
         }
+
+        public void insertarEmpleado(UEncapUsuario usuario)
+        {
+            new DAOAdmin().InsertarEmpleado(usuario);
+        }
     }
 }
 
