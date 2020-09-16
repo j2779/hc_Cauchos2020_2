@@ -1,4 +1,10 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Web;
+using Newtonsoft.Json;
 using Utilitarios;
 using Datos;
 
@@ -32,19 +38,41 @@ namespace LogicaNegocio
         }
         public bool verificarCorreo(UEncapUsuario usuario)
         {
-
-            bool respuesta;
+            bool mensaje;
             usuario = new DaoUsuario().verificarCorreo(usuario);
             if( usuario != null)
             {
-                respuesta = false;
+                mensaje = false;
             }
             else
             {
-                respuesta = true;
+                mensaje = true;
             }
 
-            return respuesta;
+            return mensaje;
+        }
+        public UEncapUsuario busquedaToken(string token)
+        {
+            UEncapUsuario usuario = new UEncapUsuario();
+            usuario = new DaoUsuario().BuscarToken(token);
+
+
+            return usuario;
+        }
+        public UEncapUsuario verificarCorreoRecuperacion(UEncapUsuario usuario)
+        {
+
+            usuario = new DaoUsuario().verificarCorreo(usuario);
+            if (usuario != null)
+            {
+                return usuario;
+            }
+            else
+            {
+                return null;
+            }
+
+
         }
         public bool verificarIdentificacion(UEncapUsuario usuario)
         {
@@ -76,6 +104,20 @@ namespace LogicaNegocio
         {
            var usuario = new DaoUsuario().UsuarioActivo2(correo);
            return usuario;
+        }
+        public string encriptar(string input)
+        {
+            SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashedBytes = provider.ComputeHash(inputBytes);
+
+            StringBuilder output = new StringBuilder();
+
+            for (int i = 0; i < hashedBytes.Length; i++)
+                output.Append(hashedBytes[i].ToString("x2").ToLower());
+
+            return output.ToString();
         }
     }
 }

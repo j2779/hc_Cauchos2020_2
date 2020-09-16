@@ -87,7 +87,7 @@ public partial class View_Login : System.Web.UI.Page
 
     protected void LButton_Recuperar_Click(object sender, EventArgs e)
     {
-        Response.Redirect("administrador/RecuperarContraseña.aspx");
+        Response.Redirect("Recuperacion_clave.aspx");
     }
 
     protected void BTN_si_Click(object sender, EventArgs e)
@@ -104,4 +104,6 @@ public partial class View_Login : System.Web.UI.Page
         BTN_si.Visible = false;
         BTN_no.Visible = false;
     }
+
+
 }
