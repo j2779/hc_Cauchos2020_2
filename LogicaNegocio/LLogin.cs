@@ -105,6 +105,7 @@ namespace LogicaNegocio
            var usuario = new DaoUsuario().UsuarioActivo2(correo);
            return usuario;
         }
+
         public string encriptar(string input)
         {
             SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
