@@ -104,6 +104,16 @@ namespace Datos
                 return db.usuario.Where(x => x.Correo == correo).FirstOrDefault();
             }
         }
+        //METODO PARA VERIFICAR TOKEN DE RECUPERACION EN LOGIN 
+        public UEncapUsuario BuscarToken(string token)
+        {
+            using (var db = new Mapeo())
+            {
+                return db.usuario.Where(x => x.Token.Equals(token) && x.Estado_id == 2).FirstOrDefault();
+            }
+
+        }
+
     }
 
 }

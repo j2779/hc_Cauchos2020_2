@@ -33,7 +33,7 @@ public partial class View_administrador_configuraradmin : System.Web.UI.Page
 
 
         UEncapUsuario usu = new UEncapUsuario();
-        usu= new LLogin().
+        usu = new LLogin().login(usu);
     }
 
     protected void BTN_editarCorreo_Click(object sender, EventArgs e)
