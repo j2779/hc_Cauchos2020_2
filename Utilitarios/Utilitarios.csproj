@@ -47,6 +47,19 @@
   <ItemGroup>
     <Compile Include="Correo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UEncapCarrito.cs" />
+    <Compile Include="UEncapCategoria.cs" />
+    <Compile Include="UEncapCiudades_Dep.cs" />
+    <Compile Include="UEncapEstado.cs" />
+    <Compile Include="UEncapEstadoItem.cs" />
+    <Compile Include="UEncapEstadoPedido.cs" />
+    <Compile Include="UEncapEstadoProveedor.cs" />
+    <Compile Include="UEncapInventario.cs" />
+    <Compile Include="UEncapMarca.cs" />
+    <Compile Include="UEncapMunicipio.cs" />
+    <Compile Include="UEncapParametros.cs" />
+    <Compile Include="UEncapPedido.cs" />
+    <Compile Include="UEncapRol.cs" />
     <Compile Include="UEncapUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
