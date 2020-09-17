@@ -9,7 +9,7 @@ using Utilitarios;
 
 
 public partial class View_Actualizacion_clave : System.Web.UI.Page
-{
+{/*
     protected void Page_Load(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;
@@ -50,5 +50,5 @@ public partial class View_Actualizacion_clave : System.Web.UI.Page
 
         new LLogin().actualizarUsuario(usuario);
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Su contraseña ha sido actualizada');window.location=\" ../login.aspx\"</script>");
-    }
+    }*/
 }

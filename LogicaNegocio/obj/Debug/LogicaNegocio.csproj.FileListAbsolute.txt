@@ -39,3 +39,7 @@ C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\LogicaNegocio\bin\D
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\LogicaNegocio\bin\Debug\Newtonsoft.Json.dll
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\LogicaNegocio\bin\Debug\Datos.dll.config
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\LogicaNegocio\bin\Debug\Newtonsoft.Json.xml
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\LogicaNegocio.dll.config
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Newtonsoft.Json.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Datos.dll.config
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\LogicaNegocio\bin\Debug\Newtonsoft.Json.xml

@@ -1,6 +1,7 @@
 ﻿
 using Utilitarios;
 using Datos;
+using System.Collections.Generic;
 
 namespace LogicaNegocio
 {
@@ -81,6 +82,19 @@ namespace LogicaNegocio
         public void insertarEmpleado(UEncapUsuario usuario)
         {
             new DAOAdmin().InsertarEmpleado(usuario);
+        }
+
+
+        public UEncapUsuario usuarioActivo(string usuario)
+        {
+            var usu = new DaoUsuario().UsuarioActivo(usuario);
+            return usu;
+        }
+
+        public List<UEncapMarca> ConsultarMarca()
+        {
+            var marcas = new DAOAdmin().ColsultarMarca();
+            return marcas;
         }
     }
 }

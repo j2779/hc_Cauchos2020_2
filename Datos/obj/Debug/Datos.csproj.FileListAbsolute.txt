@@ -394,3 +394,6 @@ C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\Datos\obj\Debug\Dat
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\Datos\bin\Debug\Datos.dll.config
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\Datos\bin\Debug\Newtonsoft.Json.dll
 C:\Users\juan5\OneDrive\Escritorio\UNIVERSIDAD\hc_cauchos_II\Datos\bin\Debug\Newtonsoft.Json.xml
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\Datos\bin\Debug\Datos.dll.config
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\Datos\bin\Debug\Newtonsoft.Json.dll
+K:\UDEC\OCTAVO\INGENIERIA DE SOFTWARE 2\HC_CAUCHOS_II\hc_cauchos2\Datos\bin\Debug\Newtonsoft.Json.xml

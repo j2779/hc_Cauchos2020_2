@@ -76,7 +76,7 @@
                         </div>
                     <!-- Login Form -->
                         <div>
-                            <asp:Button ID="BTN_Cambiar" runat="server" class="fadeIn fourth" OnClick="BTN_Recuperar_Click" style="height: 52px" Text="Cambiar" ValidationGroup="Validar" />
+                            <asp:Button ID="BTN_Cambiar" runat="server" class="fadeIn fourth"  style="height: 52px" Text="Cambiar" ValidationGroup="Validar" />
                         </div>
                     <!-- Remind Passowrd -->
                         <div id="formFooter">

@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Correo.cs" />
+    <Compile Include="EncapMision.cs" />
+    <Compile Include="EncapObjetivo.cs" />
+    <Compile Include="EncapVision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UEncapCarrito.cs" />
     <Compile Include="UEncapCategoria.cs" />

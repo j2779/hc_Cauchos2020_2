@@ -18,7 +18,661 @@ namespace Datos
                 db.SaveChanges();
             }
         }
-    }
+        //METODO PARA OBTENER MISION
+        public EncapMision ObtenerMision(EncapMision id)
+        {
+            using (var db = new Mapeo())
+            {
+                return db.mision.Where(x => x.Id.Equals(id.Id)).FirstOrDefault();
+            }
+        }
+        //METODO PARA OBTENER VISION
+        public EncapVision ObtenerVision(EncapVision id)
+        {
+            using (var db = new Mapeo())
+            {
+                return db.vision.Where(x => x.Id.Equals(id.Id)).FirstOrDefault();
+            }
+        }
+        //METODO PARA OBTENER OBJETIVO 
+        public EncapObjetivo ObtenerObjetivon(EncapObjetivo id)
+        {
+            using (var db = new Mapeo())
+            {
+                return db.objetivo.Where(x => x.Id.Equals(id.Id)).FirstOrDefault();
+            }
+        }
 
-    
+        //METODO PARA ACTUALIZAR VISION
+        public void ActualizarMision(EncapMision mision)
+        {
+            using (var db = new Mapeo())
+            {
+
+                var resultado = db.mision.SingleOrDefault(x => x.Id == 1);
+                if (resultado != null)
+                {
+                    resultado.Mision = mision.Mision;
+                    db.SaveChanges();
+                }
+
+            }
+
+        }
+        //METODO PARA ACTUALIZAR VISION
+        public void ActualizarVision(EncapVision vision)
+        {
+            using (var db = new Mapeo())
+            {
+
+                var resultado = db.vision.SingleOrDefault(x => x.Id == 1);
+                if (resultado != null)
+                {
+                    resultado.Vision = vision.Vision;
+                    db.SaveChanges();
+                }
+
+            }
+
+        }
+        //METODO PARA ACTUALIZAR OBJETIVO
+        public void ActualizarObjetivo(EncapObjetivo objetivo)
+        {
+            using (var db = new Mapeo())
+            {
+
+                var resultado = db.objetivo.SingleOrDefault(x => x.Id == 1);
+                if (resultado != null)
+                {
+                    resultado.Objetivo = objetivo.Objetivo;
+                    db.SaveChanges();
+                }
+
+            }
+
+        }
+
+        //METODO PARAMETRO DE TIMEPO CARRITO
+
+        public void ActualizarTiempoCarrito(UEncapParametros tiempocarrito)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapParametros resultado = db.parametros.Where(x => x.Id == tiempocarrito.Id).First();
+                if (resultado != null)
+                {
+                    resultado.Valor = tiempocarrito.Valor;
+                    db.SaveChanges();
+                }
+
+            }
+
+        }
+
+        //METODO CONSULTAR MARCA DE INVENTARIO
+        public List<UEncapMarca> ColsultarMarca()
+        {
+            using (var db = new Mapeo())
+            {
+                return db.marca_carro.OrderBy(x => x.Id).ToList();
+            }
+        }
+
+        //METODO CONSULTAR CATEGORIA DE INVENTARIO 
+        public List<UEncapCategoria> ColsultarCategoria()
+        {
+            using (var db = new Mapeo())
+            {
+                return db.categoria.OrderBy(x => x.Id).ToList();
+            }
+        }
+
+        //METODO PARA CONSULTAR SI EXISTE REFERENCIA
+
+        public UEncapInventario ConsultarReferencia(UEncapInventario referencia)
+        {
+            using (var db = new Mapeo())
+            {
+               
+                return db.inventario.Where(x => x.Referencia.Equals(referencia.Referencia)).FirstOrDefault();
+            }
+        }
+
+        //METODO PARA INSERTAR UN ITEM INVENTARIO
+        public void InsertarItem(UEncapInventario invent)
+        {
+            using (var db = new Mapeo())
+            {
+                db.inventario.Add(invent);
+                db.SaveChanges();
+            }
+        }
+        //CONSULTAR EMPLEADO EN HISTORIAL VENTAS
+        public List<UEncapUsuario> ConsultarEmpleado()
+        {
+            using (Mapeo db = new Mapeo())
+            {
+                return db.usuario.Where(x => x.Rol_id == 2).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS EN HISTORIAL DE VENTAS
+        public List<UEncapPedido> ConsultarVentas()
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado,
+                            Empleado = m.empleado.Nombre,
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS DIAS EN HISTORIAL VENTAS
+        public List<UEncapPedido> ConsultarVentasDia(int dia)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Day == dia)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS_MES EN HISTORIALVENTAS
+        public List<UEncapPedido> ConsultarVentasMes(int mes)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Month == mes)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS_ANIO EN HISROTIALVENTAS
+        public List<UEncapPedido> ConsultarVentasAno(int ano)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Year == ano)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+
+        //METODO DE BUSCAR EL HISTORIA DE VENTAS_ANO_DIA EN HISTORIALVENTAS
+        public List<UEncapPedido> ConsultarVentasAnoDia(int ano, int dia)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Year == ano && x.Fecha_pedido.Day == dia)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS ANO_MES_DIA EN HISTORIALVENTAS
+        public List<UEncapPedido> ConsultarVentasAnoMesDia(int ano, int mes, int dia)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Year == ano &&
+                        x.Fecha_pedido.Month == mes && x.Fecha_pedido.Day == dia)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS MES_DIA EN HISTORIAL VENTAS
+        public List<UEncapPedido> ConsultarVentasMesDia(int mes, int dia)
+        {
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Month == mes && x.Fecha_pedido.Day == dia)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+
+        //METODO PARA CONSULTAR VENTAS ANO_MES_DIA_EMPLEADO
+        public List<UEncapPedido> ConsultarVentasAnoMesDiaEmpleado(int ano, int mes, int dia, int emp)
+
+
+        {
+            string Query = "";
+            //solo Empleado
+            if (ano == 0 && mes == 0 && dia == 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id = " + emp;
+            }
+            //empleado y Dia
+            if (ano == 0 && mes == 0 && dia != 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+                       " AND to_char(fecha_pedido, 'DD')::integer = " + dia;
+
+            }
+            //empleado dia y mes
+            if (ano == 0 && mes != 0 && dia != 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 5 AND atendido_id =" + emp +
+                       " AND to_char(fecha_pedido, 'DD')::integer = " + dia +
+                       " AND  to_char(fecha_pedido, 'MM')::integer =" + mes;
+            }
+            //empleado y mes
+            if (ano == 0 && mes != 0 && dia == 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+
+                       " AND  to_char(fecha_pedido, 'MM')::integer =" + mes;
+            }
+            //empleado y año
+            if (ano != 0 && mes == 0 && dia == 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+
+                       " AND to_char(fecha_pedido, 'YYYY')::integer =" + ano;
+            }
+
+            //empleado año y dia
+            if (ano != 0 && mes == 0 && dia != 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+                    " AND to_char(fecha_pedido, 'DD')::integer = " + dia +
+                       " AND to_char(fecha_pedido, 'YYYY')::integer =" + ano;
+            }
+            //empleado mes y ano
+            if (ano != 0 && mes != 0 && dia == 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+                    " AND to_char(fecha_pedido, 'MM')::integer = " + mes +
+                       " AND to_char(fecha_pedido, 'YYYY')::integer =" + ano;
+            }
+            //Combinado
+            if (ano != 0 && mes != 0 && dia != 0 && emp != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 AND atendido_id =" + emp +
+                     " AND to_char(fecha_pedido, 'DD')::integer = " + dia +
+                    " AND to_char(fecha_pedido, 'MM')::integer = " + mes +
+
+                       " AND to_char(fecha_pedido, 'YYYY')::integer =" + ano;
+            }
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.SqlQuery(Query)
+
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+        }
+        //METODO PARA CONSULTAR VENTAS EN UN MES DEL AÑO
+        public List<UEncapPedido> ConsultarVentasAnMes(int ano, int mes)
+        {
+            string Query = "";
+            if (ano != 0 && mes != 0)
+            {
+                Query = "SELECT * FROM pedidos.pedidos pp WHERE estado_pedido = 6 " +
+                    " AND to_char(fecha_pedido, 'MM')::INTEGER = " + mes +
+                       " AND to_char(fecha_pedido, 'YYYY')::INTEGER =" + ano;
+            }
+            using (var db = new Mapeo())
+            {
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == 6 && x.Fecha_pedido.Year == ano && x.Fecha_pedido.Month == mes)
+
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            Empleado = m.empleado.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado
+
+                        }
+                          ).ToList();
+            }
+
+        }
+        //CONSULTAR ESTADO PEDIDOS EN HISTORIALPEDIDOS
+        public List<UEncapPedido> ConsultarPedidosEstado(int est)
+        {
+            using (var db = new Mapeo())
+            {
+
+
+
+                return (from uu in db.pedidos.Where(x => x.Estado_pedido == est)
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+
+                        //join domi in db.usuario on uu.Domiciliario_id equals domi.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado,
+                            //domi
+
+
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+
+                            //Domiciliaro = m.domi.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado,
+                            Empleado = m.empleado.Nombre,
+
+                        }
+                          ).ToList();
+            }
+
+        }
+
+        //CONSULTAR ESTADO PEDIDO
+
+        public List<UEncapEstadoPedido> ConsultarEstadoPedidos()
+        {
+            using (var db = new Mapeo())
+            {
+                return db.estado_pedido.ToList();
+            }
+        }
+        //METODO PARA CONSULTAR PEDUDOS EN HISITORIAL PEDIDOS 
+
+        public List<UEncapPedido> ConsultarPedidos()
+        {
+            using (var db = new Mapeo())
+            {
+
+
+
+                return (from uu in db.pedidos
+                        join usuario in db.usuario on uu.User_id equals usuario.User_id
+                        join empleado in db.usuario on uu.Atendido_id equals empleado.User_id
+                        join estado in db.estado_pedido on uu.Estado_pedido equals estado.Id
+                        //join domi in db.usuario on uu.Domiciliario_id equals domi.User_id
+                        select new
+                        {
+                            uu,
+                            usuario,
+                            estado,
+                            empleado,
+                            //domi
+
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.uu.Id,
+                            User_id = m.usuario.User_id,
+                            Atendido_id = m.uu.Atendido_id,
+                            Domiciliario_id = m.uu.Domiciliario_id,
+                            Fecha_pedido = m.uu.Fecha_pedido,
+                            Estado_pedido = m.uu.Estado_pedido,
+                            Total = m.uu.Total,
+                            //Domiciliaro = m.domi.Nombre,
+                            Usuario = m.usuario.Nombre,
+                            Estado = m.estado.Estado,
+                            Empleado = m.empleado.Nombre,
+
+                        }
+                          ).ToList();
+            }
+
+        }
+
+        //METODO PARA CONSULTAR PRODUCTOS EN ALERTAS 
+        public List<UEncapInventario> ConsultarAlertas()
+        {
+            using (var db = new Mapeo())
+            {
+                return (from uu in db.inventario
+                        where uu.Ca_actual <= uu.Ca_minima
+                        join marca_carro in db.marca_carro on uu.Id_marca equals marca_carro.Id
+                        join categoria in db.categoria on uu.Id_categoria equals categoria.Id
+                        join estadoitem in db.estado_item on uu.Id_estado equals estadoitem.Id
+
+                        select new
+                        {
+                            uu,
+                            marca_carro,
+                            categoria,
+
+                            estadoitem
+
+
+                        }).ToList().Select(m => new UEncapInventario
+                        {
+                            Id = m.uu.Id,
+                            Imagen = m.uu.Imagen,
+                            Titulo = m.uu.Titulo,
+                            Precio = m.uu.Precio,
+                            Referencia = m.uu.Referencia,
+                            Ca_actual = m.uu.Ca_actual,
+                            Ca_minima = m.uu.Ca_minima,
+                            Id_marca = m.uu.Id_marca,
+                            Id_categoria = m.uu.Id_categoria,
+                            Id_estado = m.uu.Id_estado,
+
+
+                            Nombre_categoria = m.categoria.Categoria,
+
+
+                            Estado = m.estadoitem.Estado_item
+                        }).ToList();
+            }
+        }
+    }
 }

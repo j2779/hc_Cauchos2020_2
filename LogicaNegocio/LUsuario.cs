@@ -3,7 +3,7 @@ using Datos;
 
 namespace LogicaNegocio
 {
-    class LUsuario
+    public class LUsuario
     {
     }
 }

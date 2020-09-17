@@ -4,7 +4,7 @@ using Datos;
 
 namespace LogicaNegocio
 {
-    class LDomiciliario
+    public class LDomiciliario
     {
     }
 }
