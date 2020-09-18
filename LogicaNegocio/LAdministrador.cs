@@ -6,7 +6,7 @@ namespace LogicaNegocio
 {
     public class LAdministrador
     {
-
+        //METODOS PARA MISION VISION OBJETIVO 
         public EncapMision ObtenerMision (EncapMision mision)
         {
 
@@ -47,13 +47,13 @@ namespace LogicaNegocio
         {
             new DAOAdmin().ActualizarTiempoCarrito(tiempo);
         }
-
+        //METODO PARA CONSULTAR LAS MARCAS DE LOS PRODUCTOS 
         public List<UEncapMarca> ConsultarMarca()
         {
             var marcas = new DAOAdmin().ColsultarMarca();
             return marcas;
         }
-
+        //METODO PARA CONSULTAR LAS CATEGORIAS DE LOS PRODUCTOS
         public List<UEncapCategoria> ConsultarCategoria()
         {
             var categoria = new DAOAdmin().ColsultarCategoria();
@@ -76,7 +76,7 @@ namespace LogicaNegocio
 
             return respuesta;
         }
-
+        //METODO PARA INSERTAR ITEM DE INVENTARIO 
         public void insertarItem(UEncapInventario item)
         {
             new DAOAdmin().InsertarItem(item);
@@ -175,6 +175,26 @@ namespace LogicaNegocio
         {
             var alerta = new DAOAdmin().ConsultarAlertas();
             return alerta;
+        }
+        //METODO PARA OBTENER EMPLEADOS
+        public List<UEncapUsuario> obtenerEmpleados()
+        {
+            var empleados = new DAOAdmin().ObtenerEmpleados();
+            return empleados;
+        }
+
+        //MEOTODO PARA ACTUALIZAR A LOS EMPLEADOS
+        public void actualizarEmpleado(UEncapUsuario user)
+        {
+            new DAOAdmin().ActualizarUsuario(user);
+        }
+
+
+        //METODO PARA OBTENER EMPLEADOS POOR NOMBRE
+        public List<UEncapUsuario> obtenerEmpleadosNombre(string nombre)
+        {
+            var empleados = new DAOAdmin().ObtenerEmpleados();
+            return empleados;
         }
 
 

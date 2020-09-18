@@ -26,9 +26,9 @@ public partial class View_administrador_HistorialPedido : System.Web.UI.Page
     {
         GV_Pedidos.DataSourceID = "ODS_PedidosEstado";
     }
+    
 
     protected void GV_Pedidos_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-
     }
 }
