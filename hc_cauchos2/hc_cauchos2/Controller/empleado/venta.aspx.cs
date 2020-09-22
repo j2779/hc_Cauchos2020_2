@@ -11,7 +11,6 @@ public partial class View_empleado_venta : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         PanelMensaje.Visible = false;
         PanelMensaje1.Visible = false;
         PanelMensaje2.Visible = false;

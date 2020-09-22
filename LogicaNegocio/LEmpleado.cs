@@ -73,9 +73,9 @@ namespace LogicaNegocio
             var inventario = new DAOEmpleado().ConsultarInventariMarca(marca);
             return inventario;
         }
-        public List<UEncapInventario> consultarinventariocombinado(int categoria ,int marca)
+        public List<UEncapInventario> consultarinventariocombinado(int categoria, int marca)
         {
-            var inventario = new DAOEmpleado().ConsultarInventariCombinado(categoria,marca);
+            var inventario = new DAOEmpleado().ConsultarInventariCombinado(categoria, marca);
             return inventario;
         }
         public List<UEncapInventario> consultarinventarioprecio(string valores)
@@ -85,7 +85,7 @@ namespace LogicaNegocio
         }
         public List<UEncapInventario> consultarinventariopreciocategoria(string valores, int categoria)
         {
-            var inventario = new DAOEmpleado().ConsultarInventarioPrecioCategoria(valores,categoria);
+            var inventario = new DAOEmpleado().ConsultarInventarioPrecioCategoria(valores, categoria);
             return inventario;
         }
         public List<UEncapInventario> consultarinventariopreciomarca(string valores, int marca)
@@ -93,9 +93,9 @@ namespace LogicaNegocio
             var inventario = new DAOEmpleado().ConsultarInventarioPrecioMarca(valores, marca);
             return inventario;
         }
-        public List<UEncapInventario> consultarinventariopreciocombinado(string valores, int marca,int categoria)
+        public List<UEncapInventario> consultarinventariopreciocombinado(string valores, int marca, int categoria)
         {
-            var inventario = new DAOEmpleado().ConsultarInventarioPrecioCombinado(valores, marca,categoria);
+            var inventario = new DAOEmpleado().ConsultarInventarioPrecioCombinado(valores, marca, categoria);
             return inventario;
         }
         public List<UEncapCategoria> consultarcategoria()
@@ -117,7 +117,7 @@ namespace LogicaNegocio
         {
             new DAOEmpleado().InsertarCliente(user);
         }
-     
+
         public void InsertarEmpleado(UEncapUsuario user)
         {
             new DAOEmpleado().InsertarEmpleado(user);
@@ -128,7 +128,7 @@ namespace LogicaNegocio
         }
         public List<UEncapCarrito> ObtenerCarritoxUsuario(int usuario)
         {
-          return new DAOEmpleado().ObtenerCarritoxUsuario(usuario);
+            return new DAOEmpleado().ObtenerCarritoxUsuario(usuario);
         }
         public int insertarpedido(UEncapPedido pedido)
         {
@@ -153,6 +153,46 @@ namespace LogicaNegocio
         public void ActualizarValorpedido(UEncapPedido pedido)
         {
             new DAOEmpleado().ActualizarValorpedido(pedido);
+        }
+        public List<UEncapUsuario> ObtenerClientes()
+        {
+            return new DAOEmpleado().ObtenerClientes();
+        }
+        public List<UEncapUsuario> ObtenerClientesCedula(string cedula)
+        {
+            return new DAOEmpleado().ObtenerClientesCedula(cedula);
+        }
+        public void EliminarItemCarrito(UEncapCarrito carrito)
+        {
+            new DAOEmpleado().EliminarItemCarrito(carrito);
+        }
+        public void ActualizarCarritoFactura(UEncapCarrito carrito)
+        {
+            new DAOEmpleado().ActualizarCarritoFactura(carrito);
+        }
+        public void ActualizarEstadoPedido2(UEncapPedido pedido2)
+        {
+            new DAOEmpleado().ActualizarEstadoPedido2(pedido2);
+        }
+        public void ActualizarNovedadPedido(UEncapPedido novedad)
+        {
+            new DAOEmpleado().ActualizarNovedadPedido(novedad);
+        }
+        public void ActualizarEstadoPedido3(UEncapPedido pedido3)
+        {
+            new DAOEmpleado().ActualizarEstadoPedido3(pedido3);
+        }
+        public void ActualizarEstadoEmpleado(UEncapUsuario empleado)
+        {
+            new DAOEmpleado().ActualizarEstadoEmpleado(empleado);
+        }
+        public List<UEncapProducto_pedido> ObtenerProductos(int pedido)
+        {
+            return new DAOEmpleado().ObtenerProductos(pedido);
+        }
+        public List<UEncapPedido> ObtenerPedidos(int user)
+        {
+            return new DAOEmpleado().ObtenerPedidos(user);
         }
     }
 }

@@ -121,6 +121,14 @@ namespace LogicaNegocio
             return time;
 
         }
+        public List<UEncapPedido> ObtenerPedidosActivo(int usu)
+        {
+            return new DaoUsuario().ObtenerPedidosActivo(usu);
+        }
+        public List<UEncapPedido> ObtenerPedidosFin(int usu)
+        {
+            return new DaoUsuario().ObtenerPedidosFin(usu);
+        }
     }
 
 }

@@ -643,5 +643,221 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        //METODO PARA OBTENER LOS CLIENTES EN VENTAS 
+        public List<UEncapUsuario> ObtenerClientes()
+        {
+            using (var db = new Mapeo())
+            {
+                return (
+                        //apunto a tabla empleado donde usuario sea empleado/domiciliario 
+                        from usu in db.usuario
+                        where usu.Rol_id == 4
+                        //join usuario - rol
+                        join rol in db.rol on usu.Rol_id equals rol.Id
+                        //join usuario - estado 
+                        join estado in db.estado on usu.Estado_id equals estado.Id
+
+                        select new
+                        {
+                            usu,
+                            rol,
+                            estado
+
+                        }).ToList().Select(m => new UEncapUsuario
+                        {
+                            User_id = m.usu.User_id,
+                            Nombre = m.usu.Nombre,
+                            Apellido = m.usu.Apellido,
+                            Correo = m.usu.Correo,
+                            Clave = m.usu.Clave,
+                            Fecha_nacimiento = m.usu.Fecha_nacimiento,
+                            Identificacion = m.usu.Identificacion,
+                            //
+                            Rol_id = m.usu.Rol_id,
+                            RolNombre = m.rol.Nombre,
+                            //
+                            Estado_id = m.usu.Estado_id,
+                            EstadoNombre = m.estado.Nombre
+
+                        }).ToList();
+            }
+        }
+        //METODO PARA OBTEENR CLIENTES POR cedula
+        public List<UEncapUsuario> ObtenerClientesCedula(string cedula)
+        {
+            using (var db = new Mapeo())
+            {
+                return (
+                        //apunto a tabla empleado donde usuario sea empleado/domiciliario 
+                        from usu in db.usuario
+                        where (usu.Rol_id == 4) && (usu.Identificacion == cedula)
+                        //join usuario - rol
+                        join rol in db.rol on usu.Rol_id equals rol.Id
+                        //join usuario - estado 
+                        join estado in db.estado on usu.Estado_id equals estado.Id
+
+                        select new
+                        {
+                            usu,
+                            rol,
+                            estado
+
+                        }).ToList().Select(m => new UEncapUsuario
+                        {
+
+                            User_id = m.usu.User_id,
+                            Nombre = m.usu.Nombre,
+                            Apellido = m.usu.Apellido,
+                            Correo = m.usu.Correo,
+                            Clave = m.usu.Clave,
+                            Fecha_nacimiento = m.usu.Fecha_nacimiento,
+                            Identificacion = m.usu.Identificacion,
+                            //
+                            Rol_id = m.usu.Rol_id,
+                            RolNombre = m.rol.Nombre,
+                            //
+                            Estado_id = m.usu.Estado_id,
+                            EstadoNombre = m.estado.Nombre
+
+                        }).ToList();
+            }
+        }
+        //ELIMINAR PRODUCTO DEL CARRITO 
+        public void EliminarItemCarrito(UEncapCarrito carrito)
+        {
+            using (var db = new Mapeo())
+            {
+                db.carrito.Attach(carrito);
+                var entry = db.Entry(carrito);
+                entry.State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR DATO DEL PRODUCTO EN EL CARRITO 
+        public void ActualizarCarritoFactura(UEncapCarrito carrito)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapCarrito carritoedit = db.carrito.Where(x => x.Id_Carrito == carrito.Id_Carrito).SingleOrDefault();
+                carritoedit.Cantidad = carrito.Cantidad;
+                carritoedit.Precio = carrito.Precio;
+                carritoedit.Cant_Actual = (carritoedit.Cant_Actual - carritoedit.Cantidad).Value;
+                carritoedit.Total = (carritoedit.Cantidad * carritoedit.Precio).Value;
+
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR ESTADO PEDIDO A 2
+        public void ActualizarEstadoPedido2(UEncapPedido pedido2)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapPedido estado = db.pedidos.Where(x => x.Id == pedido2.Id).SingleOrDefault();
+                estado.Estado_pedido = pedido2.Estado_pedido;
+
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR NOVEDAD EN EL PEDIDO
+        public void ActualizarNovedadPedido(UEncapPedido novedad)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapPedido newnovedad = db.pedidos.Where(x => x.Id == novedad.Id).SingleOrDefault();
+                newnovedad.Novedad = novedad.Novedad;
+
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR ESTADO PEDIDO A 3
+        public void ActualizarEstadoPedido3(UEncapPedido pedido3)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapPedido estado = db.pedidos.Where(x => x.Id == pedido3.Id).SingleOrDefault();
+                estado.Estado_pedido = pedido3.Estado_pedido;
+
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR ESTADO EMPLEADO
+        public void ActualizarEstadoEmpleado(UEncapUsuario empleado)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapUsuario emple = db.usuario.Where(x => x.User_id == empleado.User_id).SingleOrDefault();
+                emple.Estado_id = empleado.Estado_id;
+
+                db.SaveChanges();
+            }
+        }
+        //METODO PARA OBTENER LOS PRODUCTOS DEL PEDIDO
+        public List<UEncapProducto_pedido> ObtenerProductos(int pedido)
+        {
+            using (var db = new Mapeo())
+
+                return (from produc in db.productos.Where(x => x.Pedido_id == pedido)
+                        join inventario in db.inventario on produc.Producto_id equals inventario.Id
+
+                        select new
+                        {
+                            produc,
+                            inventario
+
+
+                        }).ToList().Select(m => new UEncapProducto_pedido
+                        {
+
+                            Id = m.produc.Id,
+                            Pedido_id = m.produc.Pedido_id,
+                            Producto_id = m.produc.Producto_id,
+                            Cantidad = m.produc.Cantidad,
+                            Precio = m.produc.Precio,
+                            Total = m.produc.Total,
+                            Nombre_producto = m.inventario.Titulo,
+                            Referencia = m.inventario.Referencia
+
+
+                        }).ToList();
+        }
+        //METODO PARA OBTENER LOS PEDIDOS DEL EMPLEADO
+        public List<UEncapPedido> ObtenerPedidos(int user)
+        {
+            using (var db = new Mapeo())
+
+                return (from pedi in db.pedidos.Where(x => x.Atendido_id == user && x.Estado_pedido == 2)
+                        join usu in db.usuario on pedi.User_id equals usu.User_id
+                        //join emple in db.usuario  on pedi.Atendido_id  equals emple.User_id
+
+
+                        select new
+                        {
+                            pedi,
+                            usu
+                            //emple,
+
+
+                        }).ToList().Select(m => new UEncapPedido
+                        {
+
+                            Id = m.pedi.Id,
+                            Fecha_pedido = m.pedi.Fecha_pedido,
+                            User_id = m.pedi.User_id,
+                            Atendido_id = m.pedi.Atendido_id,
+                            Domiciliario_id = m.pedi.Domiciliario_id,
+                            Estado_pedido = m.pedi.Estado_pedido,
+                            Total = m.pedi.Total,
+                            Novedad = m.pedi.Novedad,
+                            Ciu_dep_id = m.pedi.Ciu_dep_id,
+                            Direccion = m.pedi.Direccion,
+                            Municipio_id = m.pedi.Municipio_id,
+                            Fecha_pedido_fin = m.pedi.Fecha_pedido_fin,
+                            Usuario = m.usu.Nombre
+                            //Empleado = m.emple.Nombre,               
+
+
+                        }).ToList();
+        }
+
     }
 }

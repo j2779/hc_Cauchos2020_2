@@ -23,16 +23,16 @@ public partial class View_Recuperacion_clave : System.Web.UI.Page
     {
         ClientScriptManager cm = this.ClientScript;
         UEncapUsuario usuario = new UEncapUsuario();
-        //usuario.Correo = TB_CorreoRecuperar.Text;
+        
 
-        //usuario = new LLogin().verificarCorreoRecuperacion(usuario);
+        usuario = new LLogin().verificarCorreoRecuperacion(TB_CorreoRecuperar.Text);
 
         if (usuario != null)
         {
             //encriptacion de token
             usuario.Clave = "";
             usuario.Estado_id = 2;
-            //usuario.Token = new LLogin().encriptar(JsonConvert.SerializeObject(usuario.Token));
+            usuario.Token = new LLogin().encriptar(JsonConvert.SerializeObject(usuario.Token));
             usuario.Tiempo_token = DateTime.Now.AddDays(1);
 
             new Correo().enviarCorreo(usuario.Correo, usuario.Token, "");

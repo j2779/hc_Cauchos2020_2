@@ -145,4 +145,19 @@ public partial class View_usuario_Carrito : System.Web.UI.Page
 
         TB_Direccion.Visible = true;
     }
+
+    protected void B_cerrar_mensaje1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void LinkButton2_Click(object sender, EventArgs e)
+    {
+
+    }
 }

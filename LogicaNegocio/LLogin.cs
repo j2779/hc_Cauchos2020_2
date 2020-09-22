@@ -2,6 +2,8 @@
 using Utilitarios;
 using Datos;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace LogicaNegocio
 {
@@ -95,6 +97,31 @@ namespace LogicaNegocio
         {
             var marcas = new DAOAdmin().ColsultarMarca();
             return marcas;
+        }
+        //encriptacion token de recuperacion clave
+        public string encriptar(string input)
+        {
+            SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] hashedBytes = provider.ComputeHash(inputBytes);
+
+            StringBuilder output = new StringBuilder();
+
+            for (int i = 0; i < hashedBytes.Length; i++)
+                output.Append(hashedBytes[i].ToString("x2").ToLower());
+
+            return output.ToString();
+        }
+        public UEncapUsuario BuscarToken(string token)
+        {
+            return new DaoUsuario().BuscarToken(token);
+        }
+        //METODO PARA BUSCAR CORREO EN LOGIN 
+        public UEncapUsuario verificarCorreoRecuperacion(string correo)
+        {
+            return new DaoUsuario().verificarCorreoRecuperacion(correo);
+
         }
     }
 }

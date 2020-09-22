@@ -12,11 +12,11 @@ namespace Utilitarios
         {
 
             try
-            {   /*
+            {   
             var Emailtemplate = new System.IO.StreamReader(AppDomain.CurrentDomain.BaseDirectory.Insert(AppDomain.CurrentDomain.BaseDirectory.Length, "Plantilla\\mailer.html"));
             var strBody = string.Format(Emailtemplate.ReadToEnd(), userToken);
             Emailtemplate.Close(); Emailtemplate.Dispose(); Emailtemplate = null;
-            */
+            
 
                 //strBody = strBody.Replace("#TOKEN#", mensaje);
                 //Configuración del Mensaje

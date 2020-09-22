@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/empleado/empleado.master" AutoEventWireup="true" CodeFile="~/Controller/empleado/venta.aspx.cs" Inherits="View_empleado_venta" %>
 
-<%@ Register tagname="SectionLevelTutorialListing" tagprefix="uc1" %>
+<%@ Register Src="~/View/empleado/SectionLevelTutorialListingl.ascx" TagPrefix="uc1" TagName="SectionLevelTutorialListing" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h1 class="text-center text-primary"></h1>
+    <h1 class="text-center text-primary"><strong>VENTA</strong></h1>
     <asp:TextBox ID="TB_NomCliente" runat="server" CssClass="form-control-static" placeholder="Cedula Cliente A Buscar"></asp:TextBox>
     <asp:Button ID="BTN_BuscarClien" runat="server" class="btn btn-primary" OnClick="BTN_BuscarClien_Click" Text="Buscar" />
     <asp:Button ID="BTN_buscarTodos" runat="server" CssClass="btn btn-primary" OnClick="BTN_buscarTodos_Click" Text="Todos" />
@@ -38,8 +38,8 @@
             </div>
         </div>
     </div>
-    <asp:ObjectDataSource ID="ODS_Clientes" runat="server" SelectMethod="ObtenerClientes" TypeName="DAOEmpleado"></asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="ODS_ClientesCedu" runat="server" SelectMethod="ObtenerClientesCedula" TypeName="DAOEmpleado">
+    <asp:ObjectDataSource ID="ODS_Clientes" runat="server" SelectMethod="ObtenerClientes" TypeName="LogicaNegocio.LEmpleado"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ODS_ClientesCedu" runat="server" SelectMethod="ObtenerClientesCedula" TypeName="LogicaNegocio.LEmpleado">
         <SelectParameters>
             <asp:ControlParameter ControlID="TB_NomCliente" Name="cedula" PropertyName="Text" Type="String" />
         </SelectParameters>
@@ -102,9 +102,9 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ODS_Ventas" runat="server" DataObjectTypeName="EncapCarrito" DeleteMethod="EliminarItemCarrito" SelectMethod="ObtenerCarritoxUsuario" TypeName="DAOUser" UpdateMethod="ActualizarCarritoFactura">
+                <asp:ObjectDataSource ID="ODS_Ventas" runat="server" DataObjectTypeName="Utilitarios.UEncapCarrito" DeleteMethod="EliminarItemCarrito" SelectMethod="ObtenerCarritoxUsuario" TypeName="LogicaNegocio.LEmpleado" UpdateMethod="ActualizarCarritoFactura">
                     <SelectParameters>
-                        <asp:SessionParameter Name="usu" SessionField="userid" Type="Int32" />
+                        <asp:SessionParameter Name="usuario" SessionField="userid" Type="Int32" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
             </div>
