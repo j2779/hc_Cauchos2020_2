@@ -197,6 +197,51 @@ namespace LogicaNegocio
             return empleados;
         }
 
+        //METODO PARA CONSULTAR INVENTARIO
+        public List<UEncapInventario> ConsultarInventario()
+        {
+            var inventario = new DAOAdmin().ConsultarInventario();
+            return inventario;
+        }
+
+        //METODO PARA ACTUALIZAR EL INVENTARIO
+        public void ActualizarInventario(UEncapInventario inventario)
+        {
+            new DAOAdmin().ActualizarInventario(inventario);  
+        }
+
+        //METODO PARA CONSULTAR INVETARIO POR REFERENCIA
+        public List<UEncapInventario> BuscarReferencia( string a)
+        {
+            var inventario = new DAOAdmin().BuscarReferencia(a);
+            return inventario;
+        }
+
+        //METODO PARA CONSULTAR INVETARIO POR MARCA
+        public List<UEncapInventario> BuscarMarca(int marca)
+        {
+            var inventario = new DAOAdmin().BuscarMarca(marca);
+            return inventario;
+        }
+
+        //METODO PARA CONSULTAR INVETARIO POR MARCA
+        public List<UEncapInventario> BuscarCategoria(int categ)
+        {
+            var categoria = new DAOAdmin().BuscarCategoria(categ);
+            return categoria;
+        }
+
+        //METODO PARA CONSULTAR INVETARIO POR MARCA Y CATEGORIA
+        public List<UEncapInventario> BuscarMarcaCategoria(int marca, int catego)
+        {
+            var categoria = new DAOAdmin().BuscarMarcaCategoria(marca, catego);
+            return categoria;
+        }
+
+
+
+
+
 
 
     }

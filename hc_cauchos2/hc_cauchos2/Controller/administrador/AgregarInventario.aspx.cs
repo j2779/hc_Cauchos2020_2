@@ -12,7 +12,18 @@ public partial class View_administrador_AgregarInventario : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UEncapUsuario usuario = new UEncapUsuario();
+        usuario = new LLogin().usuarioActivo2((string)Session["correo"]);
 
+        if (usuario == null || Session["Valido"] == null)
+        {
+            Response.Redirect("../home.aspx");
+        }
+        if (usuario.Rol_id != 1)
+
+        {
+            Response.Redirect("../home.aspx");
+        }
     }
 
 
@@ -128,16 +139,16 @@ public partial class View_administrador_AgregarInventario : System.Web.UI.Page
 
     protected void B_cerrar_mensaje1_Click(object sender, EventArgs e)
     {
-
+        PanelMensaje.Visible = false;
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
-
+        PanelMensaje1.Visible = false;
     }
 
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
-
+        PanelMensaje2.Visible = false;
     }
 }

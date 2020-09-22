@@ -19,6 +19,7 @@ public partial class View_administrador_configuraradmin : System.Web.UI.Page
             Response.Redirect("../home.aspx");
         }
         if (usuario.Rol_id != 1)
+
         {
             Response.Redirect("../home.aspx");
         }

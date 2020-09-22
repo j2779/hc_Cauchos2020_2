@@ -11,7 +11,18 @@ public partial class View_administrador_TiempoProductosCarrito : System.Web.UI.P
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UEncapUsuario usuario = new UEncapUsuario();
+        usuario = new LLogin().usuarioActivo2((string)Session["correo"]);
 
+        if (usuario == null || Session["Valido"] == null)
+        {
+            Response.Redirect("../home.aspx");
+        }
+        if (usuario.Rol_id != 1)
+
+        {
+            Response.Redirect("../home.aspx");
+        }
     }
 
     protected void BTN_confirmar_T_Click(object sender, ImageClickEventArgs e)
