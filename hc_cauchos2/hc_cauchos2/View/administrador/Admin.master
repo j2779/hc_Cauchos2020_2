@@ -126,7 +126,7 @@
                 <i class="fa fa-dashboard"></i> <span>Empleados</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="insertarEmpleado.aspx"><i class="fa fa-circle-o"></i> Agregar Empleados</a></li>
+                <li><a href="insertarEmpleados.aspx"><i class="fa fa-circle-o"></i> Agregar Empleados</a></li>
                 <li><a href="cambiosEmpleado.aspx"><i class="fa fa-circle-o"></i> Ver-Editar-Inhabilitar Empleados</a></li>
               </ul>
             </li>
@@ -153,23 +153,7 @@
                 <li><a href="ConsultarInventario.aspx"><i class="fa fa-circle-o"></i> Consulatar Inventario</a></li>
               </ul>
             </li>         
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-pie-chart"></i>
-                <span>Proveedores</span>  <i class="fa fa-angle-left pull-right"></i>
-                </a>
-             
-              <ul class="treeview-menu">
-
-                <li><a href="AgregarProveedor.aspx"><i class="fa fa-circle-o"></i>Agregar Proveedor</a></></li>
-                <li><a href="EditarProveedor.aspx"><i class="fa fa-circle-o"></i>Editar Proveedor</a></></li>
-                <li><a href="VincularProveedor.aspx"><i class="fa fa-circle-o"></i>Vinvular Proveedor</a></></li>                
-                <li><a href="CatalogoProveedor.aspx"><i class="fa fa-circle-o"></i>Catalogo Proveedor</a></></li>
-                <li><a href="PedidosProveedor.aspx"><i class="fa fa-circle-o"></i>Pedidos Proveedor</a></></li>
-
-              </ul>
          
-            </li>            
             <li>
 
               <a href="Alertas.aspx">
