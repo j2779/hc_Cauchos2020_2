@@ -122,6 +122,37 @@ namespace LogicaNegocio
         {
             new DAOEmpleado().InsertarEmpleado(user);
         }
-
+        public void actualizarestadocarrito(UEncapCarrito carrito)
+        {
+            new DAOEmpleado().ActualizarCarritoEstado(carrito);
+        }
+        public List<UEncapCarrito> ObtenerCarritoxUsuario(int usuario)
+        {
+          return new DAOEmpleado().ObtenerCarritoxUsuario(usuario);
+        }
+        public int insertarpedido(UEncapPedido pedido)
+        {
+            return new DAOEmpleado().InsertarPedido(pedido);
+        }
+        public void ActualizarIdpedidoCarrito(UEncapCarrito pedido)
+        {
+            new DAOEmpleado().ActualizarIdpedidoCarrito(pedido);
+        }
+        public void InsertarProductos(UEncapProducto_pedido producto)
+        {
+            new DAOEmpleado().InsertarProductos(producto);
+        }
+        public void ActualizarCantidadInventario(UEncapInventario producto)
+        {
+            new DAOEmpleado().ActualizarCantidadInventario(producto);
+        }
+        public void limpiarCarrito(int userid)
+        {
+            new DAOEmpleado().limpiarCarrito(userid);
+        }
+        public void ActualizarValorpedido(UEncapPedido pedido)
+        {
+            new DAOEmpleado().ActualizarValorpedido(pedido);
+        }
     }
 }

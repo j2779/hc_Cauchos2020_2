@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
+
 using Utilitarios;
 
 namespace Datos
@@ -532,6 +532,116 @@ namespace Datos
                 db.SaveChanges();
             }
         }
+        //CAMBIO TODOS LOS ESTADOS DEL PRODUCTO CUANDO DAN FACTURAR EN EL CARRITO
+        public void ActualizarCarritoEstado(UEncapCarrito carrito)
+        {
+            using (var db = new Mapeo())
+            {
 
+                var carritoedit = db.carrito.Where(x => x.User_id == carrito.User_id).ToList();
+                foreach (var car in carritoedit)
+                {
+                    car.Estadocar = carrito.Estadocar;
+                }
+                db.SaveChanges();
+            }
+        }
+        //METODO PARA OBTENER TODOS LOS ELEMENTOS DEL CARRITO 
+        public List<UEncapCarrito> ObtenerCarritoxUsuario(int usu)
+        {
+            using (var db = new Mapeo())
+            {
+                return (from carrito in db.carrito.Where(x => x.User_id == usu)
+                        join iven in db.inventario on carrito.Producto_id equals iven.Id
+                        select new
+                        {
+                            carrito,
+                            iven
+                        }).ToList().Select(m => new UEncapCarrito
+                        {
+                            Id_Carrito = m.carrito.Id_Carrito,
+                            User_id = m.carrito.User_id,
+                            Producto_id = m.carrito.Producto_id,
+                            Cantidad = m.carrito.Cantidad,
+                            Fecha = m.carrito.Fecha,
+                            Precio = m.carrito.Precio,
+                            Total = m.carrito.Total,
+                            Nom_producto = m.iven.Titulo,
+                            Cant_Actual = (m.iven.Ca_actual - m.carrito.Cantidad).Value,
+                            Id_pedido = m.carrito.Id_pedido
+                        }).ToList();
+            }
+        }
+        //METODO PARA INSERTAR PEDIDO
+        public int InsertarPedido(UEncapPedido pedido)
+        {
+            using (var db = new Mapeo())
+            {
+                db.pedidos.Add(pedido);
+                db.SaveChanges();
+            }
+            return pedido.Id;
+        }
+        //MODIFICAR ID DEL PEDIDO EN CARRITO
+        public void ActualizarIdpedidoCarrito(UEncapCarrito carrito)
+        {
+            using (var db = new Mapeo())
+            {
+
+                var carritoedit = db.carrito.Where(x => x.User_id == carrito.User_id).ToList();
+                foreach (var car in carritoedit)
+                {
+                    car.Id_pedido = carrito.Id_pedido;
+                }
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA INSERTAR PRODUCTOS AL MOMENTO DE VENTA
+        public void InsertarProductos(UEncapProducto_pedido producto)
+        {
+            using (var db = new Mapeo())
+            {
+                db.productos.Add(producto);
+                db.SaveChanges();
+            }
+        }
+        //ACTUALIZAR  CANTIDAD DEL PRODUCTO EN EL INVENTARIO 
+        public void ActualizarCantidadInventario(UEncapInventario producto)
+        {
+            using (var db = new Mapeo())
+            {
+                UEncapInventario inventarioedit = db.inventario.Where(x => x.Id == producto.Id).SingleOrDefault();
+                inventarioedit.Ca_actual = inventarioedit.Ca_actual - producto.Ca_actual;
+
+                db.SaveChanges();
+            }
+        }
+        //METODO PARA BORRAR EN CARRITO LUEGO DE HACER FACTURACION
+        public void limpiarCarrito(int userid)
+        {
+            using (var db = new Mapeo())
+            {
+                List<UEncapCarrito> productos = db.carrito.Where(x => x.User_id == userid).ToList();
+
+                foreach (var pro in productos)
+                {
+                    db.Entry(pro).State = EntityState.Deleted;
+                }
+
+                db.SaveChanges();
+            }
+        }
+        public void ActualizarValorpedido(UEncapPedido pedido)
+        {
+            using (var db = new Mapeo())
+            {
+
+                UEncapPedido pedidoedit = db.pedidos.Where(x => x.Id == pedido.Id).SingleOrDefault();
+                pedidoedit.Total = pedido.Total;
+
+                db.SaveChanges();
+            }
+        }
     }
 }

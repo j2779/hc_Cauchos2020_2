@@ -31,6 +31,7 @@ namespace Datos
         public DbSet<UEncapEstadoPProveedor> estado_pedido_proveedor { get; set; }
         public DbSet<UEncapParametros> parametros { get; set; }
         public DbSet<UEncapPedido> pedidos { get; set; }
+        public DbSet<UEncapProducto_pedido> productos { get; set; }
         public DbSet<UEncapEstadoPedido> estado_pedido { get; set; }
         public DbSet<UEncapCiudades_Dep> ciudades_departamentso { get; set; }
         public DbSet<UEncapMunicipio> municipios { get; set; }
